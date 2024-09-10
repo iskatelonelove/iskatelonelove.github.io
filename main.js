@@ -72,21 +72,25 @@ function determineWinner(playerChoice, computerChoice) {
     return "Вы проиграли!";
 }
 
-document.getElementById("rock").addEventListener('click', function () {
+rock = document.getElementById("rock")
+
+rock.addEventListener('click', function () {
     playGame("rock");
 });
+sc = document.getElementById("rock")
 
-document.getElementById("scissors").addEventListener('click', function () {
+sc.getElementById("scissors").addEventListener('click', function () {
     playGame("scissors");
 });
+pp = document.getElementById("rock")
 
-document.getElementById("paper").addEventListener('click', function () {
+pp.getElementById("paper").addEventListener('click', function () {
     playGame("paper");
 });
 
 function playGame(playerChoice) {
     const computerChoice = getComputerChoice();
     const result = determineWinner(playerChoice, computerChoice);
-    tg.sendData(`Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`);
+    //tg.sendData(`Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`);
     resultElement.innerText = `Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`;
 }
