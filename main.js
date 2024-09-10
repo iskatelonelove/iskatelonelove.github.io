@@ -41,8 +41,8 @@ let usercard = document.getElementById("usercard"); //получаем блок 
 
 let profName = document.createElement('p'); //создаем параграф
 profName.innerText = `${tg.initDataUnsafe.user.first_name}
-   ${tg.initDataUnsafe.user.last_name}
-   ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
+    ${tg.initDataUnsafe.user.last_name}
+    ${tg.initDataUnsafe.user.username} (${tg.initDataUnsafe.user.language_code})`;
 //выдем имя, "фамилию", через тире username и код языка
 usercard.appendChild(profName); //добавляем
 
@@ -50,8 +50,42 @@ let userid = document.createElement('p'); //создаем еще парагра
 userid.innerText = `${tg.initDataUnsafe.user.id}`; //показываем user_id
 usercard.appendChild(userid); //добавляем
 
+// Игровая логика
+const choices = ["rock", "scissors", "paper"];
+const resultElement = document.getElementById("result");
 
-//работает только в attachment menu
-// let pic = document.createElement('img'); //создаем img
-// pic.src = tg.initDataUnsafe.user.photo_url; //задаём src
-// usercard.appendChild(pic); //добавляем элемент в карточку
+function getComputerChoice() {
+    return choices[Math.floor(Math.random() * choices.length)];
+}
+
+function determineWinner(playerChoice, computerChoice) {
+    if (playerChoice === computerChoice) {
+        return "Ничья!";
+    }
+    if (
+        (playerChoice === "rock" && computerChoice === "scissors") ||
+        (playerChoice === "scissors" && computerChoice === "paper") ||
+        (playerChoice === "paper" && computerChoice === "rock")
+    ) {
+        return "Вы победили!";
+    }
+    return "Вы проиграли!";
+}
+
+document.getElementById("rock").addEventListener('click', function () {
+    playGame("rock");
+});
+
+document.getElementById("scissors").addEventListener('click', function () {
+    playGame("scissors");
+});
+
+document.getElementById("paper").addEventListener('click', function () {
+    playGame("paper");
+});
+
+function playGame(playerChoice) {
+    const computerChoice = getComputerChoice();
+    const result = determineWinner(playerChoice, computerChoice);
+    resultElement.innerText = `Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`;
+}
