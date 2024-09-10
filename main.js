@@ -87,5 +87,6 @@ document.getElementById("paper").addEventListener('click', function () {
 function playGame(playerChoice) {
     const computerChoice = getComputerChoice();
     const result = determineWinner(playerChoice, computerChoice);
+    tg.sendData(`Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`);
     resultElement.innerText = `Вы выбрали: ${playerChoice}, Компьютер выбрал: ${computerChoice}. ${result}`;
 }
